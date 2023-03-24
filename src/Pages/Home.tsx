@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Home.scss';
+import axios from 'axios';
 import {FaReply} from 'react-icons/fa';
+import { useNavigate} from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 
 interface Props {
@@ -8,6 +10,28 @@ interface Props {
 }
 
 function Home({comments}: Props) {
+
+    const [comment, setComment] = useState({
+        content: "",
+        username: ""
+    })
+
+    const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
+        setComment(newComment);
+    }
+
+    const commentSend = () => {
+        axios.post(`http://localhost:3002/comments/create`, {
+        content: comment.content,
+        username: comment.username
+        }) .then(response => {
+                setComment({...comment, content: "", username: ""});
+                comments?.push(response.data);
+        }) .catch(error => {
+                console.log(error);
+        });
+    }
     return (
         <div className='main-comments-container'>
               <div className='comments-main-section'>
@@ -46,8 +70,8 @@ function Home({comments}: Props) {
                     <img src='' />
                 </div>
                 <div className="add-comment-right">
-                    <input name="content" type="text" placeholder="Add a comment..." />
-                    <button>Send</button>
+                    <input name="content" type="text" placeholder="Add a comment..." onChange={commentChange} />
+                    <button onClick={commentSend}>Send</button>
                 </div>
             </div>
         </div>
