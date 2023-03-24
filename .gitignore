@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+#Fonts
+/public/Fonts
+
 # production
 /build
 

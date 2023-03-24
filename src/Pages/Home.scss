@@ -1,1 +1,181 @@
 @import '../Variables/Variables.scss';
+
+.main-comments-container {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.add-comment-container {
+    background-color: $White;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.45rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .add-comment-left {
+        width: 10%;
+    }
+    .add-comment-right {
+        width: 90%;
+        display: flex;
+        input {
+            width: 70%;
+            padding: 2rem;
+            border: 1px solid rgb(221, 221, 221);
+            border-radius: 0.5rem;
+            margin-right: 1rem;
+        }
+        button {
+            background-color: $ModerateBlue;
+            color: $White;
+            border-radius: 0.5rem;
+            border: 0;
+            width: 7rem;
+            height: 3rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+    }
+}
+
+.comments-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments-wrapper {
+    background-color: $White;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.45rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .comment-left-section {
+        width: 10%;
+    } 
+    .comment-right-section {
+        width: 90%;
+    }
+}
+
+.vote-container {
+    background-color: $LightGray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 0.45rem;
+    width: 55%; 
+    height: 65%; 
+    border-radius: 0.5rem; 
+    h3 {
+        color: $ModerateBlue;
+        margin-top: 0rem;
+    }
+    #upvote {
+        color: $GrayishBlue;
+        font-weight: 600;
+        padding-top: 1rem;
+    }
+    #downvote {
+        padding-bottom: 1rem;
+        margin-top: 0rem;
+    }
+}
+
+.comment-user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    .user-info {
+        @extend .comment-user-container;
+        align-items: center;
+        width: 45%;
+        justify-content: space-around;
+        margin-left: -0.80rem;
+    } h2 {
+        font-size: 1rem;
+    }  p {
+        font-size: 0.75rem;
+        color: $GrayishBlue;
+        font-weight: 600;
+    }
+    img {
+        width: 17.5%;
+    } 
+    #currentUser {
+        background-color: $ModerateBlue;
+        color: $White;
+        font-size: 0.75rem;
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+        width: 2rem;
+        font-weight: 600;
+        text-align: center;
+    }
+}
+
+.user-reply {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+        color: $ModerateBlue;
+        font-weight: 600;
+    }
+    #reply-icon {
+        padding-right: 0.25rem;
+    }
+    #delete-icon {
+        color: $SoftRed;
+        padding-right: 1.5rem;
+    }
+} 
+
+.comment-feedback-container {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    p {
+        color: $GrayishBlue;
+        font-weight: 500;
+    }
+}
+
+.comments-reply-container {
+    display: flex;
+    width: 100%;
+    margin-left: 2rem;
+    justify-content: flex-end;
+    border-left: 2px solid rgb(221, 221, 221);
+}
+
+.comments-reply-wrapper {
+    background-color: $White;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    padding: 1rem;
+    border-radius: 0.45rem;
+    margin-bottom: 1rem;
+    .comment-left-section {
+        width: 10%;
+    } 
+    .comment-right-section {
+        width: 90%;
+    }
+    .comment-feedback-container {
+        span {
+            color: $ModerateBlue;
+        }
+    }
+}
+

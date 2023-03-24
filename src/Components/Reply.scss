@@ -1,0 +1,35 @@
+@import '../Variables/Variables.scss';
+
+.add-reply-container {
+    background-color: $White;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 1rem;
+    border-radius: 0.45rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .add-reply-left {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        input {
+            width: 80%;
+            padding: 1rem;
+            border: 1px solid rgb(221, 221, 221);
+            border-radius: 0.5rem;
+        }
+        #send-reply-icon {
+            color: $ModerateBlue;
+            font-size: 1.5rem;
+            margin-left: 0.25rem;
+        }
+    }
+    .add-reply-right {
+        width: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+}
