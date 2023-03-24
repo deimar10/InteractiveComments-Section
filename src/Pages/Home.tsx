@@ -11,11 +11,17 @@ interface Props {
 
 function Home({comments}: Props) {
 
+    const navigate = useNavigate();
+
+    const handleReply = (id: any) => {
+        navigate(`/reply/${id}`);
+    }
+
     const [comment, setComment] = useState({
         content: "",
         username: ""
     })
-
+   
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
         setComment(newComment);
@@ -53,7 +59,7 @@ function Home({comments}: Props) {
                                         <p>{data.createdAt}</p>
                                     </div>
                                     <div className='user-reply'>
-                                        <span id='reply-icon'><FaReply />Reply</span>
+                                        <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span>
                                     </div>
                                 </div>
                             <div className='comment-feedback-container'>
