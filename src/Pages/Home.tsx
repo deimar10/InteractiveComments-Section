@@ -4,6 +4,7 @@ import axios from 'axios';
 import {FaReply} from 'react-icons/fa';
 import { useNavigate} from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
+import { setSyntheticLeadingComments } from 'typescript';
 
 interface Props {
     comments?: CommentsInterface[];
@@ -13,14 +14,17 @@ function Home({comments}: Props) {
 
     const navigate = useNavigate();
 
-    const handleReply = (id: any) => {
+    const handleReply = (id: number) => {
         navigate(`/reply/${id}`);
     }
 
+    const [score, setScore] = useState<{ count: number}>({
+        count: 0
+    });
     const [comment, setComment] = useState({
         content: "",
         username: ""
-    })
+    });
    
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
@@ -38,6 +42,29 @@ function Home({comments}: Props) {
                 console.log(error);
         });
     }
+   
+    const handleUpvote = (data: Props | any) => {
+       let newScore = ({...score, count : data.score ++ + 1});
+
+       setScore(newScore);
+        axios.put(`http://localhost:3002/comments/editScore/${data.id}`, {
+            score: newScore.count,
+        })
+    }
+   
+    const handleDownVote = (data: Props | any) => {
+        if(score.count === 0) {
+            return null;
+        } else {
+            let newScore = ({...score, count : data.score -- -1});
+
+            setScore(newScore)
+
+            axios.put(`http://localhost:3002/comments/editScore/${data.id}`, {
+                score: newScore.count,
+            })
+        }
+    }
     return (
         <div className='main-comments-container'>
               <div className='comments-main-section'>
@@ -47,9 +74,9 @@ function Home({comments}: Props) {
                         <div className='comments-wrapper' key={data.id}>
                         <div className='comment-left-section'>
                             <div className='vote-container'>
-                                <p id='upvote'>+</p>
+                                <p id='upvote' onClick={e => handleUpvote(data)}>+</p>
                                 <h3>{data.score}</h3>
-                                <p id='downvote'>-</p>
+                                <p id='downvote' onClick={e => handleDownVote(data)}>-</p>
                             </div>
                         </div>
                             <div className='comment-right-section'>
