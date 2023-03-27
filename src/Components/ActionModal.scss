@@ -1,0 +1,29 @@
+@import '../Variables/Variables.scss';
+
+.action-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    height: 2.75rem;
+    width: 25%;
+    top: 30%;
+    right: 110%;
+    border-radius: 0.75rem;
+    padding-left: 2rem;
+    font-weight: bold;
+    background-color: $ModerateBlue;
+    color: $White;
+    transition: width 0.75s;
+}
+
+#icon-close {
+    margin-left: auto;
+    float: right;
+    padding-right: 1.25rem;
+    font-size: 1.25rem;
+}
+
+#icon-close:hover {
+    cursor: pointer;
+    color: #cccccc;
+}

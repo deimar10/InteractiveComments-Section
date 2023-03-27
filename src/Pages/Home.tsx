@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Home.scss';
 import axios from 'axios';
 import Replies from '../Components/Replies';
+import ActionModal from '../Components/ActionModal';
 import {FaReply} from 'react-icons/fa';
 import { useNavigate} from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
@@ -27,6 +28,9 @@ function Home({comments, replies}: Props) {
         content: "",
         username: ""
     });
+    const [viewEditModal, setViewEditModal] = useState<{view: boolean}>({
+        view: false
+    });
    
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
@@ -40,6 +44,7 @@ function Home({comments, replies}: Props) {
         }) .then(response => {
                 setComment({...comment, content: "", username: ""});
                 comments?.push(response.data);
+                setViewEditModal({...viewEditModal, view: true })
         }) .catch(error => {
                 console.log(error);
         });
@@ -67,6 +72,13 @@ function Home({comments, replies}: Props) {
             })
         }
     }
+
+    const handleModalClose = () => {
+        setViewEditModal({...viewEditModal, view: false});
+    }
+
+    const settings = ['Comment added'];
+
     return (
         <div className='main-comments-container'>
               <div className='comments-main-section'>
@@ -102,6 +114,10 @@ function Home({comments, replies}: Props) {
         </div>
         <Replies replies={replies} />
             <div className='add-comment-container'>
+                {viewEditModal.view ? 
+                <ActionModal modal={settings} handleModalClose={handleModalClose} viewEditModal={viewEditModal} />
+                : null
+                }
                 <div className="add-comment-left">
                     <img src='' />
                 </div>
