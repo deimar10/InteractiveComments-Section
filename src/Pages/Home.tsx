@@ -45,7 +45,7 @@ function Home({comments, replies}: Props) {
         });
     }
    
-    const handleUpvote = (data: Props | any) => {
+    const handleUpVote = (data: Props | any) => {
        let newScore = ({...score, count : data.score ++ + 1});
 
        setScore(newScore);
@@ -76,7 +76,7 @@ function Home({comments, replies}: Props) {
                         <div className='comments-wrapper' key={data.id}>
                         <div className='comment-left-section'>
                             <div className='vote-container'>
-                                <p id='upvote' onClick={e => handleUpvote(data)}>+</p>
+                                <p id='upvote' onClick={e => handleUpVote(data)}>+</p>
                                 <h3>{data.score}</h3>
                                 <p id='downvote' onClick={e => handleDownVote(data)}>-</p>
                             </div>
