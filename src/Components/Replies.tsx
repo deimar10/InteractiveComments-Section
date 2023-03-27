@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Replies.scss';
-import {FaReply, FaTrash, FaEdit} from 'react-icons/fa';
+import axios from 'axios';
+import { FaTrash, FaEdit} from 'react-icons/fa';
 import { RepliesInterface } from '../Interfaces/Interface';
 
 interface Props {
@@ -8,17 +9,45 @@ interface Props {
 }
 
 function Replies({replies}: Props) {
+
+    const [score, setScore] = useState<{ count: number}>({
+        count: 0
+    });
+
+    const handleUpVote = (data: Props | any) => {
+        let newScore = ({...score, count : data.score ++ + 1});
+ 
+        setScore(newScore);
+         axios.put(`http://localhost:3002/reply/editScore/${data.id}`, {
+             score: newScore.count,
+         })
+     }
+    
+     const handleDownVote = (data: Props | any) => {
+         if(score.count === 0) {
+             return null;
+         } else {
+             let newScore = ({...score, count : data.score -- -1});
+ 
+             setScore(newScore)
+ 
+             axios.put(`http://localhost:3002/reply/editScore/${data.id}`, {
+                 score: newScore.count,
+             })
+         }
+     }
+
     return (
         <>
         {replies?.map((data: RepliesInterface) => {
             return (
-            <div className='comments-reply-container'>
+            <div className='comments-reply-container' key={data.id}>
                 <div className='comments-reply-wrapper'>
                     <div className='comment-left-section'>
                     <div className='vote-container'>
-                        <p id='upvote'>+</p>
+                        <p id='upvote' onClick={e => handleUpVote(data)}>+</p>
                         <h3>{data.score}</h3>
-                        <p id='downvote'>-</p>
+                        <p id='downvote' onClick={e => handleDownVote(data)}>-</p>
                     </div>
                 </div>
                 <div className='comment-right-section'>
