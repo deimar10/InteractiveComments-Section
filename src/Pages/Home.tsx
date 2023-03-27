@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import './Home.scss';
 import axios from 'axios';
+import Replies from '../Components/Replies';
 import {FaReply} from 'react-icons/fa';
 import { useNavigate} from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
-import { setSyntheticLeadingComments } from 'typescript';
+import { RepliesInterface } from '../Interfaces/Interface';
 
 interface Props {
     comments?: CommentsInterface[];
+    replies?: RepliesInterface[];
 }
 
-function Home({comments}: Props) {
+function Home({comments, replies}: Props) {
 
     const navigate = useNavigate();
 
@@ -98,6 +100,7 @@ function Home({comments}: Props) {
                 )
             })}
         </div>
+        <Replies replies={replies} />
             <div className='add-comment-container'>
                 <div className="add-comment-left">
                     <img src='' />

@@ -149,33 +149,3 @@
         font-weight: 500;
     }
 }
-
-.comments-reply-container {
-    display: flex;
-    width: 100%;
-    margin-left: 2rem;
-    justify-content: flex-end;
-    border-left: 2px solid rgb(221, 221, 221);
-}
-
-.comments-reply-wrapper {
-    background-color: $White;
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    padding: 1rem;
-    border-radius: 0.45rem;
-    margin-bottom: 1rem;
-    .comment-left-section {
-        width: 10%;
-    } 
-    .comment-right-section {
-        width: 90%;
-    }
-    .comment-feedback-container {
-        span {
-            color: $ModerateBlue;
-        }
-    }
-}
-
