@@ -32,7 +32,10 @@ function App() {
             replies={replies}
             />}
           />
-           <Route path="/reply/:id" element={<Reply />}
+           <Route path="/reply/:id" index element={<Home 
+            comments={comments}
+            replies={replies}
+             />}
           />
         </Routes>
       </BrowserRouter>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Home.scss';
 import axios from 'axios';
+import Reply from '../Components/Reply';
 import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
 import {FaReply} from 'react-icons/fa';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 import { RepliesInterface } from '../Interfaces/Interface';
 
@@ -15,10 +16,25 @@ interface Props {
 
 function Home({comments, replies}: Props) {
 
-    const navigate = useNavigate();
+    const [replyView, setReplyView] = useState<boolean>(false);
+    const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
 
-    const handleReply = (id: number) => {
-        navigate(`/reply/${id}`);
+    const navigate = useNavigate();
+   
+    const handleReply = (id: any) => {
+        if(comments) {
+            let updatedData = [...comments];
+            updatedData.map((comments: any) =>{
+                if (comments.id === id) {
+                    setReplyView(!replyView);
+                    setActiveCommentId(id);
+                }   if (replyView === true) {
+                    navigate(`/`);
+                } else {
+                    navigate(`/reply/${id}`);
+                }
+            })
+        }
     }
 
     const [score, setScore] = useState<{ count: number}>({
@@ -100,13 +116,19 @@ function Home({comments, replies}: Props) {
                                         <p>{data.createdAt}</p>
                                     </div>
                                     <div className='user-reply'>
-                                        <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span>
+                                        <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span>                     
                                     </div>
                                 </div>
                             <div className='comment-feedback-container'>
                                 <p>{data.content}</p>
                             </div>
                             </div>
+                        </div>
+                        <div className='replyingTo-continer'>
+                            {replyView && activeCommentId === data.id ? 
+                            <Reply  />
+                            : null
+                            }
                         </div>
                     </div>
                 )
