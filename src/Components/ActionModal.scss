@@ -1,13 +1,13 @@
 @import '../Variables/Variables.scss';
 
 .action-container {
-    position: absolute;
     display: flex;
+    position: sticky;
     align-items: center;
     height: 2.75rem;
-    width: 25%;
-    top: 30%;
-    right: 110%;
+    width: 15%;
+    top: 10%;
+    left: 5%;
     border-radius: 0.75rem;
     padding-left: 2rem;
     font-weight: bold;

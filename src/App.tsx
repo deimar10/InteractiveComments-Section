@@ -30,11 +30,13 @@ function App() {
           <Route index element={<Home
             comments={comments}
             replies={replies}
+            setReplies={setReplies}
             />}
           />
            <Route path="/reply/:id" index element={<Home 
             comments={comments}
             replies={replies}
+            setReplies={setReplies}
              />}
           />
         </Routes>

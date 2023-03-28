@@ -12,15 +12,15 @@ import { RepliesInterface } from '../Interfaces/Interface';
 interface Props {
     comments?: CommentsInterface[];
     replies?: RepliesInterface[];
+    setReplies: any;
 }
 
-function Home({comments, replies}: Props) {
+function Home({comments, replies, setReplies}: Props) {
 
     const [replyView, setReplyView] = useState<boolean>(false);
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
 
     const navigate = useNavigate();
-   
     const handleReply = (id: any) => {
         if(comments) {
             let updatedData = [...comments];
@@ -44,10 +44,11 @@ function Home({comments, replies}: Props) {
         content: "",
         username: ""
     });
-    const [viewEditModal, setViewEditModal] = useState<{view: boolean}>({
-        view: false
+    const [viewAlertModal, setViewAlertModal] = useState<{commentAlert: boolean, replyAlert: false}>({
+        commentAlert: false,
+        replyAlert: false
     });
-   
+ 
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
         setComment(newComment);
@@ -60,7 +61,7 @@ function Home({comments, replies}: Props) {
         }) .then(response => {
                 setComment({...comment, content: "", username: ""});
                 comments?.push(response.data);
-                setViewEditModal({...viewEditModal, view: true })
+                setViewAlertModal({...viewAlertModal, commentAlert: true })
         }) .catch(error => {
                 console.log(error);
         });
@@ -90,12 +91,20 @@ function Home({comments, replies}: Props) {
     }
 
     const handleModalClose = () => {
-        setViewEditModal({...viewEditModal, view: false});
+        setViewAlertModal({...viewAlertModal, commentAlert: false, replyAlert: false});
     }
 
-    const settings = ['Comment added'];
+    const commentAlert = ['Comment added'];
+    const replyAlert = ['Reply added'];
 
     return (
+    <div className='main-home-cotnainer'>
+      {viewAlertModal.commentAlert ? 
+        <ActionModal modal={commentAlert} handleModalClose={handleModalClose} />
+        : 
+        viewAlertModal.replyAlert ? 
+            <ActionModal modal={replyAlert} handleModalClose={handleModalClose} />
+       : null }
         <div className='main-comments-container'>
               <div className='comments-main-section'>
             {comments?.map((data) => {
@@ -126,7 +135,12 @@ function Home({comments, replies}: Props) {
                         </div>
                         <div className='replyingTo-continer'>
                             {replyView && activeCommentId === data.id ? 
-                            <Reply  />
+                            <Reply 
+                            viewAlertModal={viewAlertModal} 
+                            setViewAlertModal={setViewAlertModal}
+                            replies={replies}
+                            setReplies={setReplies}
+                              />
                             : null
                             }
                         </div>
@@ -136,10 +150,6 @@ function Home({comments, replies}: Props) {
         </div>
         <Replies replies={replies} />
             <div className='add-comment-container'>
-                {viewEditModal.view ? 
-                <ActionModal modal={settings} handleModalClose={handleModalClose} viewEditModal={viewEditModal} />
-                : null
-                }
                 <div className="add-comment-left">
                     <img src='' />
                 </div>
@@ -148,6 +158,7 @@ function Home({comments, replies}: Props) {
                     <button onClick={commentSend}>Send</button>
                 </div>
             </div>
+        </div>
         </div>
     );
 }

@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import {useParams} from 'react-router-dom';
+import { RepliesInterface } from '../Interfaces/Interface';
 import './Reply.scss';
 import {MdSend} from 'react-icons/md';
 import axios from 'axios';
 
-function Reply() {
+interface Props {
+    viewAlertModal: any;
+    setViewAlertModal: any;
+    replies?: any;
+    setReplies: React.Dispatch<React.SetStateAction<RepliesInterface[]>>;
+  }
+
+function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) {
 
     let { id } = useParams();
 
-    const [reply, setReply] = useState({
+    const [reply, setReply] = useState<any>({
         content: "",
         username: ""
     })
 
     const replyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newReply = ({...reply, [e.target.name]: e.target.value, username : "User"});
+        const newReply = ({...reply, [e.target.name]: e.target.value});
         setReply(newReply);
     }
 
@@ -25,7 +33,7 @@ function Reply() {
         username: "John Doe"
         }).then(response => {
             setReply({...reply, content: "", username: ""});
-                console.log(response.data)
+            setViewAlertModal({...viewAlertModal, replyAlert: true });
             }) .catch(error => {
                     console.log(error);
             });

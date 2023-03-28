@@ -5,10 +5,10 @@ import {MdClose} from 'react-icons/md';
 interface Props {
     modal: string[],
     handleModalClose(): void,
-    viewEditModal: any
+    
 }
 
-function ActionModal({modal, handleModalClose, viewEditModal} : Props) {
+function ActionModal({modal, handleModalClose } : Props) {
     return (
         <div className='action-container'>
             <p>
