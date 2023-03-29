@@ -33,13 +33,13 @@ function App() {
           setAuth={setAuth} 
           />}
           />
-          <Route path="/:username" index element={<Home
+          <Route path="/home/:username" index element={<Home
             comments={comments}
             replies={replies}
             setReplies={setReplies}
             />}
           />
-           <Route path="/reply/:id" element={<Home 
+           <Route path="/home/:username/reply/:id" element={<Home 
             comments={comments}
             replies={replies}
             setReplies={setReplies}

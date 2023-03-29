@@ -5,7 +5,7 @@ import Reply from '../Components/Reply';
 import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
 import {FaReply} from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 import { RepliesInterface } from '../Interfaces/Interface';
 
@@ -21,6 +21,8 @@ function Home({comments, replies, setReplies}: Props) {
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
 
     const navigate = useNavigate();
+    let { username } = useParams();
+
     const handleReply = (id: any) => {
         if(comments) {
             let updatedData = [...comments];
@@ -29,9 +31,9 @@ function Home({comments, replies, setReplies}: Props) {
                     setReplyView(!replyView);
                     setActiveCommentId(id);
                 }   if (replyView === true) {
-                    navigate(`/`);
+                    navigate(`/home/${username}`);
                 } else {
-                    navigate(`/reply/${id}`);
+                    navigate(`/home/${username}/reply/${id}`);
                 }
             })
         }
@@ -41,8 +43,7 @@ function Home({comments, replies, setReplies}: Props) {
         count: 0
     });
     const [comment, setComment] = useState({
-        content: "",
-        username: ""
+        content: ""
     });
     const [viewAlertModal, setViewAlertModal] = useState<{commentAlert: boolean, replyAlert: false}>({
         commentAlert: false,
@@ -50,16 +51,16 @@ function Home({comments, replies, setReplies}: Props) {
     });
  
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newComment = ({...comment, [e.target.name]: e.target.value, username : "User"});
+        const newComment = ({...comment, [e.target.name]: e.target.value});
         setComment(newComment);
     }
 
     const commentSend = () => {
-        axios.post(`http://localhost:3002/comments/create`, {
+        axios.post(`http://localhost:3002/comments/create/${username}`, {
         content: comment.content,
-        username: comment.username
+        username: username
         }) .then(response => {
-                setComment({...comment, content: "", username: ""});
+                setComment({...comment, content: ""});
                 comments?.push(response.data);
                 setViewAlertModal({...viewAlertModal, commentAlert: true })
         }) .catch(error => {

@@ -64,7 +64,7 @@ function Login({setAuth, auth}: Props) {
             }).then(response => {
                 if (response.data.auth) {
                     setAuth({...auth, login: response.data.auth});
-                    navigate("/", {state: login.username});
+                    navigate(`/home/${login.username}`);
                 } else {
                     setAuth({...auth, login: response.data.auth});
                 }
