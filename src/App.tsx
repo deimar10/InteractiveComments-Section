@@ -4,11 +4,12 @@ import axios from 'axios';
 import { CommentsInterface } from './Interfaces/Interface';
 import { RepliesInterface } from './Interfaces/Interface';
 import Home from './Pages/Home';
-import Reply from './Components/Reply';
+import Login from './Pages/Login';
 
 function App() {
   const [comments, setComments] = useState<CommentsInterface[]>();
   const [replies, setReplies] = useState<RepliesInterface[]>();
+  const [auth, setAuth] = useState<{login: boolean}>({login:false});
 
   useEffect(() => {
     axios.get('http://localhost:3002/comments/get')
@@ -27,13 +28,18 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home
+          <Route path="/login" element={<Login
+          auth={auth}
+          setAuth={setAuth} 
+          />}
+          />
+          <Route path="/:username" index element={<Home
             comments={comments}
             replies={replies}
             setReplies={setReplies}
             />}
           />
-           <Route path="/reply/:id" index element={<Home 
+           <Route path="/reply/:id" element={<Home 
             comments={comments}
             replies={replies}
             setReplies={setReplies}

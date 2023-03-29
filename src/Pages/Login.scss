@@ -1,0 +1,91 @@
+@import '../Variables/Variables.scss';
+$child-number: 2;
+
+.background-image {
+    position: relative;
+    filter: brightness(40%);
+    z-index: 0;
+  }
+  
+  .main-login-continer {
+    position: absolute;
+    z-index: 10;
+    width: 50%;
+    margin: 0 auto;
+    top: 25%;
+    left: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.icons-container {
+  #welcome-icon {
+    color: $White;
+    font-size: 5rem;
+  }
+}
+
+.login-input-container{
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: flex;
+    height: 15rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    input {
+        width: 50%;
+        padding: 0.75rem;
+        background-color: rgba(201, 201, 201, 0.438);
+        color: $White;
+        font-size: 1.25rem;
+        border: 0;
+        border-radius: 0.75rem;
+        &::placeholder {
+            color: $White;
+            padding-left: 1.5rem;
+        }
+    }
+    button {
+        background-color: $SoftRed;
+        color: $White;
+        font-size: 1.25rem;
+        font-weight: bold;
+        width: 55%;
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+        border: 0;
+
+    }
+}
+
+.login-error-container {
+    text-align: center;
+    #password-error {
+        color: $SoftRed;
+        font-size: 1.10rem;
+        font-weight: bold;
+    }
+}
+
+.footer-container {
+    width: 80vw;
+    text-align: left;
+    margin-top: 2rem;
+    a {
+      text-decoration: none;
+    }
+    #footer-icons {
+        display: flex;
+        align-items: center;
+        color: $White;
+        font-size: 2.5rem;
+        &:hover {
+            color: rgba(255, 255, 255, 0.833);
+            cursor: pointer;
+        }
+    }
+}
