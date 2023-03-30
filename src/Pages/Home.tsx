@@ -149,7 +149,7 @@ function Home({comments, replies, setReplies}: Props) {
                 )
             })}
         </div>
-        <Replies replies={replies} />
+        <Replies replies={replies} setReplies={setReplies} />
             <div className='add-comment-container'>
                 <div className="add-comment-left">
                     <img src='' />

@@ -3,12 +3,16 @@ import './Replies.scss';
 import axios from 'axios';
 import { FaTrash, FaEdit} from 'react-icons/fa';
 import { RepliesInterface } from '../Interfaces/Interface';
+import { useParams } from 'react-router';
 
 interface Props {
     replies?: RepliesInterface[];
+    setReplies: (replies: any) => void;
 }
 
-function Replies({replies}: Props) {
+function Replies({replies, setReplies}: Props) {
+
+    let { username, id } = useParams();
 
     const [score, setScore] = useState<{ count: number}>({
         count: 0
@@ -37,6 +41,14 @@ function Replies({replies}: Props) {
          }
      }
 
+     const handleDeleteReplies = (id: number) => {
+        axios.delete(`http://localhost:3002/reply/${username}/delete/${id}`)
+        .then(() => {
+            let removedReply = replies?.filter((reply: RepliesInterface) => reply.id !== id);
+            setReplies(removedReply);
+        })
+     }
+
     return (
         <>
         {replies?.map((data: RepliesInterface) => {
@@ -57,8 +69,13 @@ function Replies({replies}: Props) {
                             <p>{data.createdAt}</p>
                         </div>
                         <div className='user-reply'>
-                            <span id='delete-icon'><FaTrash/>Delete</span>
-                            <span  id='edit-icon'><FaEdit/>Edit</span>
+                         {username === data.username ?
+                            <>
+                            <span id='delete-icon' onClick={e => handleDeleteReplies(data.id)}><FaTrash/>Delete</span>
+                            <span id='edit-icon'><FaEdit/>Edit</span>
+                            </>
+                            : null
+                         }
                         </div>
                     </div>
                     <div className='comment-feedback-container'>

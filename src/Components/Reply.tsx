@@ -14,11 +14,10 @@ interface Props {
 
 function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) {
 
-    let { id } = useParams();
+    let { username, id } = useParams();
 
     const [reply, setReply] = useState<any>({
-        content: "",
-        username: ""
+        content: ""
     })
 
     const replyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,12 +26,12 @@ function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) 
     }
 
     const sendReply = () => {
-        axios.post(`http://localhost:3002/reply/create/${id}`, {
+        axios.post(`http://localhost:3002/reply/${username}/create/${id}`, {
         replyingId: id,
         content: reply.content,
-        username: "John Doe"
+        username: username
         }).then(response => {
-            setReply({...reply, content: "", username: ""});
+            setReply({...reply, content: ""});
             setViewAlertModal({...viewAlertModal, replyAlert: true });
             }) .catch(error => {
                     console.log(error);
