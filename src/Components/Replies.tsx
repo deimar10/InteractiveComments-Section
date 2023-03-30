@@ -12,7 +12,7 @@ interface Props {
 
 function Replies({replies, setReplies}: Props) {
 
-    let { username, id } = useParams();
+    let { username } = useParams();
 
     const [score, setScore] = useState<{ count: number}>({
         count: 0
