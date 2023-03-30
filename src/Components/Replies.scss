@@ -29,3 +29,29 @@
     }
 }
 
+.user-reply {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    span {
+        color: $ModerateBlue;
+        font-weight: 600;
+    }
+    #reply-icon {
+        padding-right: 0.25rem;
+        &:hover {
+            cursor: pointer;
+            color: $LightGrayishBlue;
+        }
+    }
+    #delete-icon {
+        color: $SoftRed;
+        padding-right: 1.5rem;
+        &:hover {
+            cursor: pointer;
+            color: $PaleRed;
+        }
+    }
+} 
+

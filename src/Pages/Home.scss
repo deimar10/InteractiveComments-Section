@@ -123,24 +123,6 @@
     }
 }
 
-.user-reply {
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    span {
-        color: $ModerateBlue;
-        font-weight: 600;
-    }
-    #reply-icon {
-        padding-right: 0.25rem;
-    }
-    #delete-icon {
-        color: $SoftRed;
-        padding-right: 1.5rem;
-    }
-} 
-
 .comment-feedback-container {
     display: flex;
     flex-direction: row;
