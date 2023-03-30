@@ -58,7 +58,10 @@ $child-number: 2;
         padding: 0.5rem;
         border-radius: 0.75rem;
         border: 0;
-
+        &:hover {
+            background-color: hsl(357, 91%, 73%);
+            cursor: pointer;
+        }
     }
 }
 
@@ -75,6 +78,7 @@ $child-number: 2;
     width: 80vw;
     text-align: left;
     margin-top: 2rem;
+    display: flex;
     a {
       text-decoration: none;
     }
@@ -86,6 +90,30 @@ $child-number: 2;
         &:hover {
             color: rgba(255, 255, 255, 0.833);
             cursor: pointer;
+        }
+    }
+    .footer-left {
+        display: flex;
+        align-items: center;
+        width: 50%;
+    }
+    .footer-right {
+        width: 50%;
+        span {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            color: $White;
+            font-size: 1.15rem;
+        }
+        h3 {
+            padding: 0.5rem;
+            text-decoration: underline;
+            font-size: 1.25rem;
+            &:hover {
+                color: rgba(255, 255, 255, 0.833);
+                cursor: pointer;
+            }
         }
     }
 }

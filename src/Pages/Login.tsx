@@ -75,6 +75,10 @@ function Login({setAuth, auth}: Props) {
         }
     };
 
+    const handleNavigate = () => {
+        navigate('/register');
+    };
+
     return (
         <>
         <div className='background-image' style={
@@ -107,7 +111,12 @@ function Login({setAuth, auth}: Props) {
                 <button onClick={handleSubmitLogin}>Login</button>
             </div>
             <div className='footer-container'>
-            <a href='https://github.com/deimar10' id='footer-icons'><FaGithub />Github</a>        
+                <div className='footer-left'>
+                    <a href='https://github.com/deimar10' id='footer-icons'><FaGithub />Github</a>        
+                </div>
+                <div className='footer-right'>
+                    <span>Dont have an account yet?<h3 onClick={handleNavigate}>Signup</h3>here</span>
+                </div>
             </div>
         </div> 
         </>
