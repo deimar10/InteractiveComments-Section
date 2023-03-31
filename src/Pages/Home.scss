@@ -1,5 +1,9 @@
 @import '../Variables/Variables.scss';
 
+.main-home-cotnainer {
+   position: relative;
+}
+
 .main-comments-container {
     width: 50%;
     margin: 0 auto;
@@ -15,7 +19,7 @@
     padding: 1rem;
     border-radius: 0.45rem;
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 6rem;
     .add-comment-left {
         width: 10%;
     }

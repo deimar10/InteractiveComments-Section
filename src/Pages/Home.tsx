@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import axios from 'axios';
 import Reply from '../Components/Reply';
 import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
+import SideBar from '../Components/SideBar';
 import {FaReply} from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
@@ -13,9 +14,11 @@ interface Props {
     comments?: CommentsInterface[];
     replies?: RepliesInterface[];
     setReplies: any;
+    auth: any,
+    setAuth: (auth: any) => void,
 }
 
-function Home({comments, replies, setReplies}: Props) {
+function Home({comments, replies, setReplies, auth, setAuth}: Props) {
 
     const [replyView, setReplyView] = useState<boolean>(false);
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
@@ -98,6 +101,10 @@ function Home({comments, replies, setReplies}: Props) {
     const commentAlert = ['Comment added'];
     const replyAlert = ['Reply added'];
 
+    useEffect(() => {
+        if (!auth.login) { navigate('/login'); }
+    }, [auth])
+
     return (
     <div className='main-home-cotnainer'>
       {viewAlertModal.commentAlert ? 
@@ -160,6 +167,7 @@ function Home({comments, replies, setReplies}: Props) {
                 </div>
             </div>
         </div>
+        <SideBar auth={auth} setAuth={setAuth} />
         </div>
     );
 }

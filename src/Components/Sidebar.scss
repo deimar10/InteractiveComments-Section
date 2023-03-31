@@ -1,0 +1,52 @@
+@import '../Variables/Variables.scss';
+
+.sidebar-main-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 1.15rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.5px);
+    -webkit-backdrop-filter: blur(11.5px);
+    width: 90%;
+    bottom: 0;
+    left: 5%;
+    padding: 0.25rem;
+    margin-bottom: 0.5rem;
+    .profile-container {
+        width: 50%;
+        padding-left: 1rem;
+        border-right: 2px solid rgb(221, 221, 221);
+        h3 {
+            font-weight: 400;
+            color: $GrayishBlue;
+        }
+        span {
+            color: $GrayishBlue;
+            font-weight: 600;
+        }
+    }
+    .signout-container {
+        padding-left: 1rem;
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+        span {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          font-weight: 500;
+          padding-right: 1rem;
+          color: $GrayishBlue;
+          #signout-icon {
+            padding-left: 0.25rem;
+          }
+          &:hover {
+            color: $SoftRed;
+            cursor: pointer;
+          }
+        }
+    }
+}
+

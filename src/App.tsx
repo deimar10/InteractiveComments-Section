@@ -48,12 +48,16 @@ function App() {
             comments={comments}
             replies={replies}
             setReplies={setReplies}
+            auth={auth}
+            setAuth={setAuth}
             />}
           />
            <Route path="/home/:username/reply/:id" element={<Home 
             comments={comments}
             replies={replies}
             setReplies={setReplies}
+            auth={auth}
+            setAuth={setAuth}
              />}
           />
         </Routes>
