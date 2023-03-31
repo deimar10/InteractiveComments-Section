@@ -77,8 +77,9 @@ $child-number: 2;
 .footer-container {
     width: 80vw;
     text-align: left;
-    margin-top: 2rem;
     display: flex;
+    position: fixed;
+    bottom: 0;
     a {
       text-decoration: none;
     }
