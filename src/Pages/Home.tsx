@@ -98,7 +98,7 @@ function Home({comments, replies, setReplies, auth, setAuth}: Props) {
         setViewAlertModal({...viewAlertModal, commentAlert: false, replyAlert: false});
     }
 
-    const userSession = (username: any) => {
+    window.onload = (username: any) => {
       window.localStorage.setItem('username', username);
     }
 
@@ -106,8 +106,7 @@ function Home({comments, replies, setReplies, auth, setAuth}: Props) {
     const replyAlert = ['Reply added'];
 
     useEffect(() => {
-        userSession(username);
-        if (!auth.login && localStorage.getItem('username') == null) { navigate('/login'); }
+        if (!auth.login && localStorage.getItem('username') === null) { navigate('/login'); }
     }, [auth])
 
     return (

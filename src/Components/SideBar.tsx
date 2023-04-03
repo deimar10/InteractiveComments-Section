@@ -13,7 +13,8 @@ function SideBar({ auth, setAuth }: Props) {
     let { username } = useParams();
 
     const handleSignout = () => {
-        setAuth({...auth, login: false})
+        window.localStorage.removeItem("username");
+        setAuth({...auth, login: false});
     }
 
     return (
