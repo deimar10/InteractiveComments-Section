@@ -98,11 +98,16 @@ function Home({comments, replies, setReplies, auth, setAuth}: Props) {
         setViewAlertModal({...viewAlertModal, commentAlert: false, replyAlert: false});
     }
 
+    const userSession = (username: any) => {
+      window.localStorage.setItem('username', username);
+    }
+
     const commentAlert = ['Comment added'];
     const replyAlert = ['Reply added'];
 
     useEffect(() => {
-        if (!auth.login) { navigate('/login'); }
+        userSession(username);
+        if (!auth.login && localStorage.getItem('username') == null) { navigate('/login'); }
     }, [auth])
 
     return (
