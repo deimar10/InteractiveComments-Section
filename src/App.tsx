@@ -34,7 +34,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login
+          <Route path='/' element={<Login auth={auth} setAuth={setAuth} />} />
+          <Route path="/login" index element={<Login
           auth={auth}
           setAuth={setAuth} 
           />}
@@ -44,7 +45,7 @@ function App() {
           setRegister={setRegister}
           />}
           />
-          <Route path="/home/:username" index element={<Home
+          <Route path="/home/:username" element={<Home
             comments={comments}
             replies={replies}
             setReplies={setReplies}
