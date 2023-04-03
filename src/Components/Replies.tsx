@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import './Replies.scss';
 import axios from 'axios';
 import { FaTrash, FaEdit} from 'react-icons/fa';
+import {MdSend} from 'react-icons/md';
 import { RepliesInterface } from '../Interfaces/Interface';
 import { useParams } from 'react-router';
 
 interface Props {
-    replies?: RepliesInterface[];
+    replies?: RepliesInterface[] | any;
     setReplies: (replies: any) => void;
 }
 
@@ -16,6 +17,11 @@ function Replies({replies, setReplies}: Props) {
 
     const [score, setScore] = useState<{ count: number}>({
         count: 0
+    });
+    const [editReplyView, setEditReplyView] = useState<boolean>(false);
+    const [activeReplyId, setActiveReplyId] = useState<number | null>(null);
+    const [edit, setEdit] = useState<any>({
+        content: ''
     });
 
     const handleUpVote = (data: Props | any) => {
@@ -49,9 +55,39 @@ function Replies({replies, setReplies}: Props) {
         })
      }
 
+     const handleEditReplies = (id: number) => {
+        if(replies) {
+            let updatedData = [...replies]
+            updatedData.map((reply: RepliesInterface) => {
+                if(reply.id === id) {
+                    setEditReplyView(!editReplyView);
+                    setActiveReplyId(id);
+                    setEdit({...edit, content: reply.content})
+                }
+            })
+        }
+     }
+
+     const handleEditChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEdit({...edit, [e.target.name]: e.target.value})
+     }
+
+     const handleSendEdit = (id: number) => {
+        axios.put(`http://localhost:3002/reply/${username}/edit/${id}`, {
+            content: edit.content,
+        })
+        .then((response) => {
+            const updatedReplies = [...replies];
+            const replyIndex = updatedReplies.findIndex(reply => reply.id === id);
+            updatedReplies[replyIndex].content = edit.content;
+            setReplies(updatedReplies);
+        }).catch(error => {
+            console.log(error);
+        })
+     }
     return (
         <>
-        {replies?.map((data: RepliesInterface) => {
+        {replies && replies?.map((data: RepliesInterface) => {
             return (
             <div className='comments-reply-container' key={data.id}>
                 <div className='comments-reply-wrapper'>
@@ -72,14 +108,21 @@ function Replies({replies, setReplies}: Props) {
                          {username === data.username ?
                             <>
                             <span id='delete-icon' onClick={e => handleDeleteReplies(data.id)}><FaTrash/>Delete</span>
-                            <span id='edit-icon'><FaEdit/>Edit</span>
+                            <span id='edit-icon' onClick={e => handleEditReplies(data.id)}><FaEdit/>Edit</span>
                             </>
                             : null
                          }
                         </div>
                     </div>
                     <div className='comment-feedback-container'>
+                        {editReplyView && activeReplyId === data.id ? 
+                        <span id='edit-reply'>
+                            <input name='content' value={edit.content} onChange={handleEditChange}></input>
+                            <MdSend id='send-edited-reply' onClick={e => handleSendEdit(data.id)} />
+                        </span>
+                        :
                         <p><span>@{data.replyingTo}</span> {data.content}</p>
+                        }
                     </div>
                 </div>
                 </div>

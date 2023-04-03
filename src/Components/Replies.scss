@@ -26,6 +26,25 @@
         span {
             color: $ModerateBlue;
         }
+        #edit-reply {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 0.5rem;
+        }
+        input {
+            width: 100%;
+            border: 0;
+            padding: 1rem;
+            border: 1px solid rgb(221, 221, 221);;
+        }
+        #send-edited-reply {
+            padding-left: 0.75rem;
+            &:hover {
+                cursor: pointer;
+                color: $LightGrayishBlue;
+            }
+        }
     }
 }
 
@@ -51,6 +70,12 @@
         &:hover {
             cursor: pointer;
             color: $PaleRed;
+        }
+    }
+    #edit-icon {
+        &:hover {
+            cursor: pointer;
+            color: $LightGrayishBlue;
         }
     }
 } 
