@@ -32,6 +32,12 @@ function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) 
         username: username
         }).then(response => {
             setReply({...reply, content: ""});
+            replies?.push({
+                id: response.data.id,
+                content: response.data.content,
+                score: response.data.score,
+                username: response.data.username
+             });
             setViewAlertModal({...viewAlertModal, replyAlert: true });
             }) .catch(error => {
                     console.log(error);
