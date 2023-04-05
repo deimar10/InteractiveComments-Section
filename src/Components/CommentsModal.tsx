@@ -4,7 +4,6 @@ import { FaTrash, FaEdit} from 'react-icons/fa';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { CommentsInterface } from '../Interfaces/Interface';
 import axios from 'axios';
-import { useParams } from 'react-router';
 
 interface Props {
     comments?: CommentsInterface[];
