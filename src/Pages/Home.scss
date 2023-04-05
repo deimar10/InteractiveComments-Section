@@ -66,6 +66,12 @@
     } 
     .comment-right-section {
         width: 90%;
+        .user-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin-left: 1%;
+        }
     }
 }
 
