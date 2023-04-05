@@ -5,7 +5,6 @@ import { FaTrash, FaEdit} from 'react-icons/fa';
 import {MdSend} from 'react-icons/md';
 import { RepliesInterface } from '../Interfaces/Interface';
 import { useParams } from 'react-router';
-import Reply from './Reply';
 
 interface Props {
     replies?: RepliesInterface[] | any;
