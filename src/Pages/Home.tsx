@@ -26,6 +26,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
     const [replyView, setReplyView] = useState<boolean>(false);
     const [commentsModalView, setCommentsModal] = useState<boolean>(false);
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
+    const [editCommentView, setEditCommentView] = useState<boolean>(false);
 
     const navigate = useNavigate();
     let { username } = useParams();
@@ -165,12 +166,16 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
                                             setComments={setComments}
                                             setCommentsModal={setCommentsModal}
                                             activeCommentId={activeCommentId}
+                                            editCommentView={editCommentView}
+                                            setEditCommentView={setEditCommentView} 
                                         />
                                         : null
                                      }
                                 </div>
                             <div className='comment-feedback-container'>
-                                <p>{data.content}</p>
+                                <p style={{
+                                    display: editCommentView && activeCommentId === data.id && commentsModalView ? 'none' : ''
+                                }}>{data.content}</p>
                             </div>
                             </div>
                         </div>

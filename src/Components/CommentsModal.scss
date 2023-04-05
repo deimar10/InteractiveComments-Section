@@ -35,3 +35,31 @@
     align-items: flex-start;
     gap: 0.5rem;
 }
+
+.commentsModal-edit-container {
+    width: 90%;
+    position: absolute;
+    top: 5rem;
+    span {
+        color: $ModerateBlue;
+    }
+    #edit-reply {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0.5rem;
+    }
+    input {
+        width: 100%;
+        border: 0;
+        padding: 1rem;
+        border: 1px solid rgb(221, 221, 221);;
+    }
+    #send-edited-reply {
+        padding-left: 0.75rem;
+        &:hover {
+            cursor: pointer;
+            color: $LightGrayishBlue;
+        }
+    }
+}
