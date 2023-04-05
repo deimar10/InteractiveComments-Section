@@ -5,6 +5,7 @@ import { FaTrash, FaEdit} from 'react-icons/fa';
 import {MdSend} from 'react-icons/md';
 import { RepliesInterface } from '../Interfaces/Interface';
 import { useParams } from 'react-router';
+import Reply from './Reply';
 
 interface Props {
     replies?: RepliesInterface[] | any;
@@ -75,11 +76,13 @@ function Replies({replies, setReplies}: Props) {
      const handleSendEdit = (id: number) => {
         axios.put(`http://localhost:3002/reply/${username}/edit/${id}`, {
             content: edit.content,
+            modified: true
         })
         .then((response) => {
             const updatedReplies = [...replies];
             const replyIndex = updatedReplies.findIndex(reply => reply.id === id);
             updatedReplies[replyIndex].content = edit.content;
+            updatedReplies[replyIndex].modified = true;
             setReplies(updatedReplies);
         }).catch(error => {
             console.log(error);
@@ -102,6 +105,7 @@ function Replies({replies, setReplies}: Props) {
                     <div className='comment-user-container'>
                         <div className='user-info'>
                             <h2>{data.username}</h2>
+                                {data.modified && <span id='modified'>Modified</span>}
                             <p>{data.createdAt}</p>
                         </div>
                         <div className='user-reply'>

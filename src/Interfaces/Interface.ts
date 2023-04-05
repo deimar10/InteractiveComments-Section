@@ -14,4 +14,5 @@ export interface RepliesInterface {
     replyingId: number;
     replyingTo: string;
     username: string;
+    modified?: boolean;
 }

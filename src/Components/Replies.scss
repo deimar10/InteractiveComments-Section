@@ -21,6 +21,20 @@
     } 
     .comment-right-section {
         width: 90%;
+        .user-info {
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            margin-left: 1%;
+        }
+        #modified {
+            background-color: $LightGray;
+            color: $ModerateBlue;
+            border-radius: 1rem;
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
     }
     .comment-feedback-container {
         span {
