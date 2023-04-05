@@ -1,0 +1,37 @@
+@import '../Variables/Variables.scss';
+@import './Replies.scss';
+
+.commentsModal-main-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: -1rem;
+    background: rgba(255, 255, 255, 0.32);
+    border-radius: 0.15rem;
+    border-left: 3px solid $GrayishBlue;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.5px);
+    -webkit-backdrop-filter: blur(11.5px);
+    width: 30%;
+    padding: 1rem;
+}
+
+.commentsModal-close-section {
+    display: flex;
+    justify-content: flex-end;
+    #close-icon {
+        color: $DarkBlue;
+        &:hover {
+            color: $GrayishBlue;
+            cursor: pointer;
+        }
+    }
+}
+
+.commensModal-handle-section {
+    @extend .user-reply;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}

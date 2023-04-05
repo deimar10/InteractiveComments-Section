@@ -47,6 +47,7 @@ function App() {
           />
           <Route path="/home/:username" element={<Home
             comments={comments}
+            setComments={setComments}
             replies={replies}
             setReplies={setReplies}
             auth={auth}
@@ -55,6 +56,7 @@ function App() {
           />
            <Route path="/home/:username/reply/:id" element={<Home 
             comments={comments}
+            setComments={setComments}
             replies={replies}
             setReplies={setReplies}
             auth={auth}

@@ -6,21 +6,25 @@ import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
 import SideBar from '../Components/SideBar';
 import {FaReply} from 'react-icons/fa';
+import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 import { RepliesInterface } from '../Interfaces/Interface';
+import CommentsModal from '../Components/CommentsModal';
 
 interface Props {
     comments?: CommentsInterface[];
+    setComments: any;
     replies?: RepliesInterface[];
     setReplies: any;
     auth: any,
     setAuth: (auth: any) => void,
 }
 
-function Home({comments, replies, setReplies, auth, setAuth}: Props) {
+function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props) {
 
     const [replyView, setReplyView] = useState<boolean>(false);
+    const [commentsModalView, setCommentsModal] = useState<boolean>(false);
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
 
     const navigate = useNavigate();
@@ -98,6 +102,18 @@ function Home({comments, replies, setReplies, auth, setAuth}: Props) {
         setViewAlertModal({...viewAlertModal, commentAlert: false, replyAlert: false});
     }
 
+    const handleCommentsModal = (id: number) => {
+        if(comments) {
+            let updatedData = [...comments];
+            updatedData.map((comments: CommentsInterface) => {
+                if(comments.id === id) {
+                    setCommentsModal(true);
+                    setActiveCommentId(id);
+                }
+            })
+        }
+    }
+
     window.onload = (username: any) => {
       window.localStorage.setItem('username', username);
     }
@@ -137,8 +153,21 @@ function Home({comments, replies, setReplies, auth, setAuth}: Props) {
                                         <p>{data.createdAt}</p>
                                     </div>
                                     <div className='user-reply'>
-                                        <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span>                     
+                                        <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span> 
+                                        {username === data.username ?
+                                        <BsThreeDotsVertical id='dots-icon' onClick={e => handleCommentsModal(data.id)} />  
+                                        : null 
+                                        }                  
                                     </div>
+                                    {commentsModalView && activeCommentId === data.id ? 
+                                        <CommentsModal 
+                                            comments={comments}
+                                            setComments={setComments}
+                                            setCommentsModal={setCommentsModal}
+                                            activeCommentId={activeCommentId}
+                                        />
+                                        : null
+                                     }
                                 </div>
                             <div className='comment-feedback-container'>
                                 <p>{data.content}</p>
