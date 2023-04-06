@@ -115,15 +115,13 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
         }
     }
 
-    window.onload = (username: any) => {
-      window.localStorage.setItem('username', username);
-    }
+    const localUser = localStorage.getItem('username');
 
     const commentAlert = ['Comment added'];
     const replyAlert = ['Reply added'];
 
     useEffect(() => {
-        if (!auth.login && localStorage.getItem('username') === null) { navigate('/login'); }
+        if (!auth.login && localStorage.getItem('username') === null || username !== localUser) { navigate('/login'); }
     }, [auth])
 
     return (

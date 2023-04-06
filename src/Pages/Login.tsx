@@ -65,6 +65,7 @@ function Login({setAuth, auth}: Props) {
                 if (response.data.auth) {
                     setAuth({...auth, login: response.data.auth});
                     navigate(`/home/${login.username}`);
+                    localStorage.setItem('username', login.username);
                 } else {
                     setAuth({...auth, login: response.data.auth});
                 }
