@@ -44,12 +44,14 @@ function CommentsModal({comments, setComments, setCommentsModal, activeCommentId
      const handleSendEdit = () => {
         console.log(activeCommentId)
         axios.put(`http://localhost:3002/comments/edit/${activeCommentId}`, {
-            content: edit.content
+            content: edit.content,
+            modified: true
         })
         .then((response) => {
             const updatedComments = [...comments];
             const commentIndex = updatedComments.findIndex(comment => comment.id === activeCommentId);
             updatedComments[commentIndex].content = edit.content;
+            updatedComments[commentIndex].modified = true;
             setComments(updatedComments);
             setEditCommentView(!editCommentView);
         }).catch(error => {

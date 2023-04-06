@@ -149,6 +149,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
                                 <div className='comment-user-container'>
                                     <div className='user-info'>
                                         <h2>{data.username}</h2>
+                                            {data.modified && <span id='modified'>Modified</span>}
                                         <p>{data.createdAt}</p>
                                     </div>
                                     <div className='user-reply'>

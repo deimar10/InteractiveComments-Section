@@ -4,6 +4,7 @@ export interface CommentsInterface {
     createdAt: string;
     score: number;
     username: string;
+    modified?: boolean;
 }
 
 export interface RepliesInterface {
