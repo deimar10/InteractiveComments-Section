@@ -208,5 +208,4 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
         </div>
     );
 }
-
 export default Home;
