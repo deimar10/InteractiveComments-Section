@@ -70,7 +70,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
         }) .then(response => {
                 setComment({...comment, content: ""});
                 comments?.push(response.data);
-                setViewAlertModal({...viewAlertModal, commentAlert: true })
+                setViewAlertModal({...viewAlertModal, commentAlert: true });
         }) .catch(error => {
                 console.log(error);
         });
@@ -198,7 +198,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
                     <img src='' />
                 </div>
                 <div className="add-comment-right">
-                    <input name="content" type="text" placeholder="Add a comment..." onChange={commentChange} />
+                    <input name="content" value={comment.content} type="text" placeholder="Add a comment..." onChange={commentChange} />
                     <button onClick={commentSend}>Send</button>
                 </div>
             </div>

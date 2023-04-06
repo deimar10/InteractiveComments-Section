@@ -47,7 +47,7 @@ function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) 
     return (
         <div className='add-reply-container'>
             <div className="add-reply-left">
-                <input name="content" type="text" placeholder="Add a reply..." onChange={replyChange} />
+                <input name="content" value={reply.content} type="text" placeholder="Add a reply..." onChange={replyChange} />
                 <MdSend id='send-reply-icon' onClick={sendReply} />
             </div>
         </div> 
