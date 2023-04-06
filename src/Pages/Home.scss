@@ -43,6 +43,10 @@
             font-size: 1rem;
             text-transform: uppercase;
             font-weight: 600;
+            &:hover {
+                background-color: $LightGrayishBlue;
+                cursor: pointer;
+            }
         }
     }
 }
