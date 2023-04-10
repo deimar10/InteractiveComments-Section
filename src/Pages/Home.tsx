@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Home.scss';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 import Reply from '../Components/Reply';
 import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
@@ -29,8 +30,10 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
     const [editCommentView, setEditCommentView] = useState<boolean>(false);
 
     const navigate = useNavigate();
-    let { username } = useParams();
+    let { username } = useParams<{ username?: any }>();
 
+    const decryptedUsername = CryptoJS.AES.decrypt(username, 'secret-key').toString(CryptoJS.enc.Utf8);
+  
     const handleReply = (id: any) => {
         if(comments) {
             let updatedData = [...comments];
@@ -121,7 +124,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
     const replyAlert = ['Reply added'];
 
     useEffect(() => {
-        if (!auth.login && localStorage.getItem('username') === null || username !== localUser) { navigate('/login'); }
+        if (!auth.login && localStorage.getItem('username') === null || decryptedUsername !== localUser) { navigate('/login'); }
     }, [auth])
 
     return (
@@ -154,7 +157,7 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
                                     </div>
                                     <div className='user-reply'>
                                         <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span> 
-                                        {username === data.username ?
+                                        {decryptedUsername === data.username ?
                                         <BsThreeDotsVertical id='dots-icon' onClick={e => handleCommentsModal(data.id)} />  
                                         : null 
                                         }                  

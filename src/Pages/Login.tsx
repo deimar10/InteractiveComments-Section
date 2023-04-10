@@ -5,6 +5,7 @@ import { AiFillWechat } from 'react-icons/ai';
 import { FaGithub } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 
 interface Props {
     setAuth: (auth: any) => void,
@@ -23,6 +24,8 @@ function Login({setAuth, auth}: Props) {
         usernameError: '',
         passwordError: ''
     });
+
+    const username = CryptoJS.AES.encrypt(login.username, 'secret-key').toString();
 
     const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setLogin({...login, [e.target.name] : e.target.value})
@@ -64,7 +67,7 @@ function Login({setAuth, auth}: Props) {
             }).then(response => {
                 if (response.data.auth) {
                     setAuth({...auth, login: response.data.auth});
-                    navigate(`/home/${login.username}`);
+                    navigate(`/home/${username.replace(/\//g, '')}`);
                     localStorage.setItem('username', login.username);
                 } else {
                     setAuth({...auth, login: response.data.auth});

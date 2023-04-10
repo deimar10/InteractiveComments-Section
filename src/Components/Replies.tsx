@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Replies.scss';
 import axios from 'axios';
+import CryptoJS from 'crypto-js';
 import { FaTrash, FaEdit} from 'react-icons/fa';
 import {MdSend} from 'react-icons/md';
 import { RepliesInterface } from '../Interfaces/Interface';
@@ -13,7 +14,9 @@ interface Props {
 
 function Replies({replies, setReplies}: Props) {
 
-    let { username } = useParams();
+    let { username } = useParams<{ username?: any }>();
+    
+    const decryptedUsername = CryptoJS.AES.decrypt(username, 'secret-key').toString(CryptoJS.enc.Utf8);
 
     const [score, setScore] = useState<{ count: number}>({
         count: 0
@@ -108,7 +111,7 @@ function Replies({replies, setReplies}: Props) {
                             <p>{data.createdAt}</p>
                         </div>
                         <div className='user-reply'>
-                         {username === data.username ?
+                         {decryptedUsername === data.username ?
                             <>
                             <span id='delete-icon' onClick={e => handleDeleteReplies(data.id)}><FaTrash/>Delete</span>
                             <span id='edit-icon' onClick={e => handleEditReplies(data.id)}><FaEdit/>Edit</span>
