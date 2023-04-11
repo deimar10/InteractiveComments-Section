@@ -15,7 +15,7 @@ interface Props {
 function Replies({replies, setReplies}: Props) {
 
     let { username } = useParams<{ username?: any }>();
-    
+
     const decryptedUsername = CryptoJS.AES.decrypt(username, 'secret-key').toString(CryptoJS.enc.Utf8);
 
     const [score, setScore] = useState<{ count: number}>({
