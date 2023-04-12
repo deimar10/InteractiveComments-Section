@@ -31,45 +31,49 @@ function Notifications({ notifications, setNotifications }: Props) {
  
     return (
         <div className="notification-main-container">
-              <div className='user-notifications-container'>
-            {notifications?.map((data: NotificationInterface) => {
-                return (
-                    <>
-                        <List
-                        sx={{
-                            width: '100%',
-                            maxWidth: 360,
-                        }}
-                        >
-                            <ListItem>
-                                <ListItemAvatar>
-                                <Avatar 
-                                sx={{
-                                    bgcolor: '#32a952',
-                                }}>
-                                    <ThumbUpIcon />
-                                </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary="Upvote" secondary={data.content} />
-                            </ListItem>
-                            <Divider variant="inset" component="li" />
-                            <ListItem>
-                                <ListItemAvatar>
-                                <Avatar
-                                sx={{
-                                    bgcolor: '#3f4ed4',
-                                }}>
-                                    <MapsUgcIcon />
-                                </Avatar>
-                                </ListItemAvatar>
-                                <ListItemText primary="New reply" secondary={data.content} />
-                            </ListItem>
-                            <Divider variant="inset" component="li" />
-                        </List>
-                        </>
-                )
-            })}
+             {notifications?.length === 0 ? 
+              <p id="notifications-message">There arent any notifications!</p>
+              :
+            <div className='user-notifications-container'>
+                {notifications?.map((data: NotificationInterface) => {
+                    return (
+                        <>
+                            <List
+                            sx={{
+                                width: '100%',
+                                maxWidth: 360,
+                            }}
+                            >
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar 
+                                    sx={{
+                                        bgcolor: '#32a952',
+                                    }}>
+                                        <ThumbUpIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Upvote" secondary={data.content} />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar
+                                    sx={{
+                                        bgcolor: '#3f4ed4',
+                                    }}>
+                                        <MapsUgcIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary="New reply" secondary={data.content} />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                            </List>
+                            </>
+                    )
+                })}
             </div>
+             }
         </div>
     )
 }
