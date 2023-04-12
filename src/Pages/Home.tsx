@@ -11,18 +11,25 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 import { RepliesInterface } from '../Interfaces/Interface';
+import { NotificationInterface } from '../Interfaces/Interface';
 import CommentsModal from '../Components/CommentsModal';
+import Notifications from '../Components/Notifications';
 
 interface Props {
     comments?: CommentsInterface[];
     setComments: any;
     replies?: RepliesInterface[];
     setReplies: any;
+    notifications?: NotificationInterface[];
+    setNotifications: any;
     auth: any,
     setAuth: (auth: any) => void,
+    notificationModel: boolean,
+    setNotificationModel: (notificationModel: any) => void,
 }
 
-function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props) {
+function Home(
+    {comments, setComments, replies, setReplies, notifications, setNotifications, auth, setAuth, notificationModel, setNotificationModel}: Props) {
 
     const [replyView, setReplyView] = useState<boolean>(false);
     const [commentsModalView, setCommentsModal] = useState<boolean>(false);
@@ -129,6 +136,15 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
 
     return (
     <div className='main-home-cotnainer'>
+        <div className={`notifications-container${notificationModel ? ' active' : ''}`} 
+        style={{
+            overflowY: 'scroll'
+        }}>
+            <Notifications
+            notifications={notifications}
+            setNotifications={setNotifications}
+            />
+        </div>
       {viewAlertModal.commentAlert ? 
         <ActionModal modal={commentAlert} handleModalClose={handleModalClose} />
         : 
@@ -207,7 +223,12 @@ function Home({comments, setComments, replies, setReplies, auth, setAuth}: Props
                 </div>
             </div>
         </div>
-        <SideBar auth={auth} setAuth={setAuth} />
+        <SideBar 
+            auth={auth} 
+            setAuth={setAuth}
+            notificationModel={notificationModel}
+            setNotificationModel={setNotificationModel}
+            />
         </div>
     );
 }

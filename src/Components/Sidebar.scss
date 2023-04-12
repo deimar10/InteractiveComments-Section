@@ -18,6 +18,8 @@
         width: 50%;
         padding-left: 1rem;
         border-right: 2px solid rgb(221, 221, 221);
+        display: flex;
+        align-items: center;
         h3 {
             font-weight: 400;
             color: $GrayishBlue;
@@ -25,6 +27,15 @@
         span {
             color: $GrayishBlue;
             font-weight: 600;
+        }
+        #notification-icon {
+          color: $GrayishBlue;
+          margin-left: 10%;
+          font-size: 1.15rem;
+          &:hover {
+            color: $DarkBlue;
+            cursor: pointer;
+          }
         }
     }
     .signout-container {

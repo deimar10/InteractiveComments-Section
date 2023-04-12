@@ -17,3 +17,9 @@ export interface RepliesInterface {
     username: string;
     modified?: boolean;
 }
+
+export interface NotificationInterface {
+    id: number;
+    userId: number;
+    content: string;
+}
