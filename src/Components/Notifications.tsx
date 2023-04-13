@@ -44,6 +44,8 @@ function Notifications({ notifications, setNotifications }: Props) {
                                 maxWidth: 360,
                             }}
                             >
+                                {data.type === 'upvote' ? 
+                                <>
                                 <ListItem>
                                     <ListItemAvatar>
                                     <Avatar 
@@ -56,6 +58,10 @@ function Notifications({ notifications, setNotifications }: Props) {
                                     <ListItemText primary="Upvote" secondary={data.content} />
                                 </ListItem>
                                 <Divider variant="inset" component="li" />
+                                </>
+                                : null }
+                                 {data.type === 'reply' ? 
+                                <>
                                 <ListItem>
                                     <ListItemAvatar>
                                     <Avatar
@@ -68,6 +74,8 @@ function Notifications({ notifications, setNotifications }: Props) {
                                     <ListItemText primary="New reply" secondary={data.content} />
                                 </ListItem>
                                 <Divider variant="inset" component="li" />
+                                </>
+                                : null }
                             </List>
                             </>
                     )

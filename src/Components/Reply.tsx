@@ -29,7 +29,8 @@ function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) 
         axios.post(`http://localhost:3002/reply/${username}/create/${id}`, {
         replyingId: id,
         content: reply.content,
-        username: username
+        username: username,
+        type: 'reply'
         }).then(response => {
             setReply({...reply, content: ""});
             replies?.push({

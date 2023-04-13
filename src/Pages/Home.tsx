@@ -90,8 +90,9 @@ function Home(
        let newScore = ({...score, count : data.score ++ + 1});
 
        setScore(newScore);
-        axios.put(`http://localhost:3002/comments/editScore/${data.id}`, {
+        axios.put(`http://localhost:3002/comments/${username}/editScore/${data.id}`, {
             score: newScore.count,
+            type: 'upvote'
         })
     }
    
