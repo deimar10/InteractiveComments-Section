@@ -9,6 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import MapsUgcIcon from '@mui/icons-material/MapsUgc';
 import Divider from '@mui/material/Divider';
 
@@ -50,9 +51,29 @@ function Notifications({ notifications, setNotifications }: Props) {
                                     <ListItemAvatar>
                                     <Avatar 
                                     sx={{
+                                        height: '2.1rem',
+                                        width: '2.1rem',
                                         bgcolor: '#32a952',
                                     }}>
                                         <ThumbUpIcon />
+                                    </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary="Upvote" secondary={data.content} />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                                </>
+                                : null }
+                                 {data.type === 'downvote' ? 
+                                <>
+                                <ListItem>
+                                    <ListItemAvatar>
+                                    <Avatar 
+                                    sx={{
+                                        height: '2.1rem',
+                                        width: '2.1rem',
+                                        bgcolor: '#e34634',
+                                    }}>
+                                        <ThumbDownIcon />
                                     </Avatar>
                                     </ListItemAvatar>
                                     <ListItemText primary="Upvote" secondary={data.content} />
@@ -66,6 +87,8 @@ function Notifications({ notifications, setNotifications }: Props) {
                                     <ListItemAvatar>
                                     <Avatar
                                     sx={{
+                                        height: '2.1rem',
+                                        width: '2.1rem',
                                         bgcolor: '#3f4ed4',
                                     }}>
                                         <MapsUgcIcon />
