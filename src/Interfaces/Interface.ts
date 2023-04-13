@@ -22,4 +22,5 @@ export interface NotificationInterface {
     id: number;
     userId: number;
     content: string;
+    type: string;
 }
