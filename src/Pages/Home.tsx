@@ -7,7 +7,6 @@ import Replies from '../Components/Replies';
 import ActionModal from '../Components/ActionModal';
 import SideBar from '../Components/SideBar';
 import {FaReply} from 'react-icons/fa';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommentsInterface } from '../Interfaces/Interface';
 import { RepliesInterface } from '../Interfaces/Interface';
@@ -32,7 +31,6 @@ function Home(
     {comments, setComments, replies, setReplies, notifications, setNotifications, auth, setAuth, notificationModel, setNotificationModel}: Props) {
 
     const [replyView, setReplyView] = useState<boolean>(false);
-    const [commentsModalView, setCommentsModal] = useState<boolean>(false);
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
     const [editCommentView, setEditCommentView] = useState<boolean>(false);
 
@@ -120,7 +118,6 @@ function Home(
             let updatedData = [...comments];
             updatedData.map((comments: CommentsInterface) => {
                 if(comments.id === id) {
-                    setCommentsModal(true);
                     setActiveCommentId(id);
                 }
             })
@@ -175,28 +172,25 @@ function Home(
                                     </div>
                                     <div className='user-reply'>
                                         <span id='reply-icon' onClick={e => handleReply(data.id)}><FaReply />Reply</span> 
-                                        {decryptedUsername === data.username ?
-                                        <BsThreeDotsVertical id='dots-icon' onClick={e => handleCommentsModal(data.id)} />  
-                                        : null 
-                                        }                  
                                     </div>
-                                    {commentsModalView && activeCommentId === data.id ? 
-                                        <CommentsModal 
-                                            comments={comments}
-                                            setComments={setComments}
-                                            setCommentsModal={setCommentsModal}
-                                            activeCommentId={activeCommentId}
-                                            editCommentView={editCommentView}
-                                            setEditCommentView={setEditCommentView} 
-                                        />
-                                        : null
-                                     }
                                 </div>
                             <div className='comment-feedback-container'>
                                 <p style={{
-                                    display: editCommentView && activeCommentId === data.id && commentsModalView ? 'none' : ''
+                                    display: activeCommentId === data.id && editCommentView ? 'none' : ''
                                 }}>{data.content}</p>
                             </div>
+                            { decryptedUsername === data.username ?
+                            <div 
+                                onMouseEnter={e => handleCommentsModal(data.id)}>
+                            <CommentsModal
+                                comments={comments}
+                                setComments={setComments}
+                                activeCommentId={activeCommentId}
+                                editCommentView={editCommentView}
+                                setEditCommentView={setEditCommentView} 
+                            />
+                            </div>
+                            : null }
                             </div>
                         </div>
                         <div className='replyingTo-continer'>

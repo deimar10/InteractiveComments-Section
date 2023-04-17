@@ -1,30 +1,30 @@
 import react, { useState } from 'react';
 import './CommentsModal.scss';
-import { FaTrash, FaEdit} from 'react-icons/fa';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { MdSend } from 'react-icons/md'
 import { CommentsInterface } from '../Interfaces/Interface';
 import axios from 'axios';
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface Props {
     comments?: CommentsInterface[] | any;
     setComments: any;
-    setCommentsModal: any;
-    activeCommentId: number;
+    activeCommentId: any;
     editCommentView: boolean;
     setEditCommentView: any;
 }
 
-function CommentsModal({comments, setComments, setCommentsModal, activeCommentId, editCommentView, setEditCommentView}: Props) {
+function CommentsModal({comments, setComments, activeCommentId, editCommentView, setEditCommentView}: Props) {
 
     const [edit, setEdit] = useState<any>({
         content: ''
-    })
-
-    const handleCloseModal = () => {
-        setCommentsModal(false);
-    }
-
+    });
+    const [commentId, setCommentId] = useState<number>();
+ 
     const handleDeleteComment = () => {
         axios.delete(`http://localhost:3002/comments/delete/${activeCommentId}`)
             .then(() => {
@@ -34,6 +34,13 @@ function CommentsModal({comments, setComments, setCommentsModal, activeCommentId
     }
 
     const handleEditComment = () => {
+        const updatedComments = [...comments];
+        const commentIndex = updatedComments.findIndex(comment => comment.id === activeCommentId);
+        setEdit({
+            content: updatedComments[commentIndex].content
+          });
+        const setId =  updatedComments[commentIndex].id;
+        setCommentId(setId);
         setEditCommentView(!editCommentView);
     }
 
@@ -42,7 +49,6 @@ function CommentsModal({comments, setComments, setCommentsModal, activeCommentId
      }
 
      const handleSendEdit = () => {
-        console.log(activeCommentId)
         axios.put(`http://localhost:3002/comments/edit/${activeCommentId}`, {
             content: edit.content,
             modified: true
@@ -59,25 +65,51 @@ function CommentsModal({comments, setComments, setCommentsModal, activeCommentId
         })
      }
 
+     const actions = [
+        { icon: <DeleteIcon />, name: 'Delete', onClick: handleDeleteComment },
+        { icon: <EditIcon />, name: 'Edit', onClick: handleEditComment },
+    ];
+ 
     return (
         <>
-        <div className='commentsModal-main-container'>
-            <div className='commentsModal-close-section'>
-                <AiFillCloseCircle id='close-icon' onClick={handleCloseModal} />
-            </div>
-            <div className='commensModal-handle-section'>
-                <span id='delete-icon' onClick={handleDeleteComment}><FaTrash/>Delete</span>
-                <span id='edit-icon' onClick={handleEditComment}><FaEdit/>Edit</span>
-            </div>
+        <div className='main-commentsModal-container'>
+            <Box sx={{ height: 220, transform: 'translateZ(0px)', flexGrow: 1}}>
+                <SpeedDial
+                    ariaLabel="SpeedDial basic example"
+                    sx={{
+                        position: 'absolute',
+                        bottom: 16,
+                        right: 16,
+                        '& .MuiFab-root': {
+                          width: 30,
+                          height: 30,
+                          minHeight: 30,
+                        }
+                      }}
+                    icon={<SpeedDialIcon />}
+                    FabProps={{
+                        style: { backgroundColor: 'hsl(238, 40%, 52%)' }
+                      }}
+                >
+                    {actions.map((action) => (
+                    <SpeedDialAction
+                        key={action.name}
+                        icon={action.icon}
+                        tooltipTitle={action.name}
+                        onClick={action.onClick}
+                    />
+                    ))}
+                </SpeedDial>
+            </Box>
         </div>
-        {editCommentView ?
-        <div className='commentsModal-edit-container'>
-                <span id='edit-reply'>
-                    <input name='content' value={edit.content} onChange={handleEditChange}></input>
-                    <MdSend id='send-edited-reply' onClick={handleSendEdit}/>
-                </span> 
-        </div>
-         : null   
+        {editCommentView && activeCommentId === commentId ?
+            <div className='commentsModal-edit-container'>
+            <span id='edit-reply'>
+                <input name='content' value={edit.content} onChange={handleEditChange}></input>
+                <MdSend id='send-edited-reply' onClick={handleSendEdit}/>
+            </span> 
+            </div>
+        : null   
         }
         </>
     )

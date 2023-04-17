@@ -1,45 +1,15 @@
 @import '../Variables/Variables.scss';
-@import './Replies.scss';
 
-.commentsModal-main-container {
+.main-commentsModal-container {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    right: -1rem;
-    background: rgba(255, 255, 255, 0.32);
-    border-radius: 0.15rem;
-    border-left: 3px solid $GrayishBlue;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(11.5px);
-    -webkit-backdrop-filter: blur(11.5px);
-    width: 30%;
-    padding: 1rem;
-}
-
-.commentsModal-close-section {
-    display: flex;
-    justify-content: flex-end;
-    #close-icon {
-        color: $DarkBlue;
-        &:hover {
-            color: $GrayishBlue;
-            cursor: pointer;
-        }
-    }
-}
-
-.commensModal-handle-section {
-    @extend .user-reply;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    right: 0;
+    bottom: 0;
 }
 
 .commentsModal-edit-container {
     width: 90%;
     position: absolute;
-    top: 5rem;
+    top: 3rem;
     span {
         color: $ModerateBlue;
     }
@@ -53,7 +23,7 @@
         width: 100%;
         border: 0;
         padding: 1rem;
-        border: 1px solid rgb(221, 221, 221);;
+        border: 1px solid rgb(221, 221, 221);
     }
     #send-edited-reply {
         padding-left: 0.75rem;
