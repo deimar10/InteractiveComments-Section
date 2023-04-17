@@ -41,7 +41,7 @@ function Reply({viewAlertModal, setViewAlertModal, replies, setReplies}: Props) 
                 createdAt: response.data.createdAt,
                 replyingTo: response.data.replyingTo[0].username
              });
-            setViewAlertModal({...viewAlertModal, replyAlert: true });
+            setViewAlertModal({...viewAlertModal, view: true});
             }) .catch(error => {
                     console.log(error);
             });

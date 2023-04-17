@@ -61,9 +61,8 @@ function Home(
     const [comment, setComment] = useState({
         content: ""
     });
-    const [viewAlertModal, setViewAlertModal] = useState<{commentAlert: boolean, replyAlert: false}>({
-        commentAlert: false,
-        replyAlert: false
+    const [viewAlertModal, setViewAlertModal] = useState<{view: boolean}>({
+        view: false,
     });
  
     const commentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,7 +77,7 @@ function Home(
         }) .then(response => {
                 setComment({...comment, content: ""});
                 comments?.push(response.data);
-                setViewAlertModal({...viewAlertModal, commentAlert: true });
+                setViewAlertModal({...viewAlertModal, view: true });
         }) .catch(error => {
                 console.log(error);
         });
@@ -110,7 +109,7 @@ function Home(
     }
 
     const handleModalClose = () => {
-        setViewAlertModal({...viewAlertModal, commentAlert: false, replyAlert: false});
+        setViewAlertModal({...viewAlertModal, view: false});
     }
 
     const handleCommentsModal = (id: number) => {
@@ -126,8 +125,7 @@ function Home(
 
     const localUser = localStorage.getItem('username');
 
-    const commentAlert = ['Comment added'];
-    const replyAlert = ['Reply added'];
+    const settings = ['Successfull'];
 
     useEffect(() => {
         if (!auth.login && localStorage.getItem('username') === null || decryptedUsername !== localUser) { navigate('/login'); }
@@ -144,12 +142,13 @@ function Home(
             setNotifications={setNotifications}
             />
         </div>
-      {viewAlertModal.commentAlert ? 
-        <ActionModal modal={commentAlert} handleModalClose={handleModalClose} />
-        : 
-        viewAlertModal.replyAlert ? 
-            <ActionModal modal={replyAlert} handleModalClose={handleModalClose} />
-       : null }
+      {viewAlertModal.view && 
+        <ActionModal 
+            modal={settings} 
+            handleModalClose={handleModalClose} 
+            open={viewAlertModal} 
+        />
+      }
         <div className='main-comments-container'>
               <div className='comments-main-section'>
             {comments?.map((data) => {
