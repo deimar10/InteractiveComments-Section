@@ -1,9 +1,14 @@
 import React from 'react';
 import CryptoJS from 'crypto-js';
 import './Sidebar.scss';
-import { GoSignOut } from 'react-icons/go';
-import { BsBellFill } from 'react-icons/bs';
 import { useParams } from 'react-router';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import LogoutIcon from '@mui/icons-material/Logout';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 interface Props {
     auth: any;
@@ -26,16 +31,34 @@ function SideBar({ auth, setAuth, notificationModel, setNotificationModel }: Pro
     const handleNotifcation = () => {
         setNotificationModel(!notificationModel);
     }
+
+    const [value, setValue] = React.useState(0);
+
+    const theme = createTheme({
+        palette: {
+          primary: {
+            main: 'hsl(238, 40%, 52%)',
+          }
+        },
+      });
    
     return (
-        <div className='sidebar-main-container'>
-            <div className='profile-container'>
-                <h3>Logged in as: <span>{decryptedUsername}</span></h3>
-                <BsBellFill id='notification-icon' onClick={handleNotifcation} />
-            </div>
-            <div className='signout-container'>
-                <span onClick={handleSignout}>Signout<GoSignOut id='signout-icon' /></span>
-            </div>
+        <div className='sidebar-main-container '>
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: '100%' }}>
+          <BottomNavigation sx={{ padding: '0.5rem' }}
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          >
+            <BottomNavigationAction color="primary" label={decryptedUsername} icon={<AssignmentIndIcon />} />
+            <BottomNavigationAction color="primary" label="Notifications" icon={<NotificationsIcon />} onClick={handleNotifcation} />
+            <BottomNavigationAction color="primary" label="Logout" icon={<LogoutIcon />} onClick={handleSignout} />
+          </BottomNavigation>
+        </Box>
+        </ThemeProvider>
         </div>
     )
 }
