@@ -128,7 +128,7 @@ function Home(
     const settings = ['Successfull'];
 
     useEffect(() => {
-        if (!auth.login && localStorage.getItem('username') === null || decryptedUsername !== localUser) { navigate('/login'); }
+        if (!auth.login && localUser === null || decryptedUsername !== localUser) { navigate('/login'); }
     }, [auth])
 
     return (
