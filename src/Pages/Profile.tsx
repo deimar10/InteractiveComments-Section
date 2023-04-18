@@ -44,7 +44,7 @@ function Profile({ auth, setAuth, notificationModel, setNotificationModel,  noti
 
     useEffect(() => {
         if (!auth.login && localUser === null || decryptedUsername !== localUser) { navigate('/login'); }
-    }, [auth])
+    }, [auth]);
 
     return (
         <div className='profile-main-container'>
