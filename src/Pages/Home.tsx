@@ -84,7 +84,7 @@ function Home(
     }
    
     const handleUpVote = (data: Props | any) => {
-       let newScore = ({...score, count : data.score ++ + 1});
+       let newScore = ({...score, count : data.score ++ });
 
        setScore(newScore);
         axios.put(`http://localhost:3002/comments/${username}/editScore/${data.id}`, {
@@ -97,7 +97,7 @@ function Home(
         if(score.count === 0) {
             return null;
         } else {
-            let newScore = ({...score, count : data.score -- -1});
+            let newScore = ({...score, count : data.score -- });
 
             setScore(newScore)
 
