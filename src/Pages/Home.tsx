@@ -51,6 +51,7 @@ function Home(
                 } else {
                     navigate(`/home/${username}/reply/${id}`);
                 }
+                return updatedData;
             })
         }
     }
@@ -74,11 +75,11 @@ function Home(
         axios.post(`http://localhost:3002/comments/create/${username}`, {
         content: comment.content,
         username: username
-        }) .then(response => {
+        }).then(response => {
                 setComment({...comment, content: ""});
                 comments?.push(response.data);
                 setViewAlertModal({...viewAlertModal, view: true });
-        }) .catch(error => {
+        }).catch(error => {
                 console.log(error);
         });
     }
@@ -119,6 +120,7 @@ function Home(
                 if(comments.id === id) {
                     setActiveCommentId(id);
                 }
+                return updatedData;
             })
         }
     }
@@ -128,8 +130,8 @@ function Home(
     const settings = ['Successfull'];
 
     useEffect(() => {
-        if (!auth.login && localUser === null || decryptedUsername !== localUser) { navigate('/login'); }
-    }, [auth])
+        if (!auth.login && (localUser === null || decryptedUsername !== localUser)) { navigate('/login'); }
+    }, [auth, decryptedUsername, localUser, navigate]);
 
     return (
     <div className='main-home-cotnainer'>
@@ -210,7 +212,6 @@ function Home(
         <Replies replies={replies} setReplies={setReplies} />
             <div className='add-comment-container'>
                 <div className="add-comment-left">
-                    <img src='' />
                 </div>
                 <div className="add-comment-right">
                     <input name="content" value={comment.content} type="text" placeholder="Add a comment..." onChange={commentChange} />

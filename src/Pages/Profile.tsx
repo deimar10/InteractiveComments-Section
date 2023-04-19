@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CryptoJS from 'crypto-js';
 import './Profile.scss';
 import { useNavigate, useParams } from 'react-router';
@@ -43,8 +43,8 @@ function Profile({ auth, setAuth, notificationModel, setNotificationModel,  noti
     }
 
     useEffect(() => {
-        if (!auth.login && localUser === null || decryptedUsername !== localUser) { navigate('/login'); }
-    }, [auth]);
+        if (!auth.login && (localUser === null || decryptedUsername !== localUser)) { navigate('/login'); }
+    }, [auth, decryptedUsername, localUser, navigate]);
 
     return (
         <div className='profile-main-container'>
