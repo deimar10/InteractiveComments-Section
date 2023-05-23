@@ -65,7 +65,7 @@ function Register({register, setRegister}: Props) {
                 username: register.username,
                 password: register.password,
                 hex: randomHex()
-            }).then((response) => {
+            }).then(() => {
                 navigate('/login');
                 setRegisterError({...registerError, usernameError: '', passwordError: '', confirmPasswordError: ''});
             }).catch(error => {

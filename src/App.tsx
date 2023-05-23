@@ -15,7 +15,7 @@ function App() {
   const [notifications, setNotifications] = useState<NotificationInterface[]>();
   const [auth, setAuth] = useState<{login: boolean}>({login:false});
   const [notificationModel, setNotificationModel] = useState<boolean>(false);
-  const [colorHex, setColorHex] = useState()
+  const [colorHex, setColorHex] = useState();
   const [register, setRegister] = useState({
     username: '',
     password: '',
