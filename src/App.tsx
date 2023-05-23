@@ -15,6 +15,7 @@ function App() {
   const [notifications, setNotifications] = useState<NotificationInterface[]>();
   const [auth, setAuth] = useState<{login: boolean}>({login:false});
   const [notificationModel, setNotificationModel] = useState<boolean>(false);
+  const [colorHex, setColorHex] = useState()
   const [register, setRegister] = useState({
     username: '',
     password: '',
@@ -38,10 +39,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Login auth={auth} setAuth={setAuth} />} />
+          <Route path='/' element={<Login auth={auth} setAuth={setAuth} setColorHex={setColorHex}  />} />
           <Route path="/login" index element={<Login
           auth={auth}
-          setAuth={setAuth} 
+          setAuth={setAuth}
+          setColorHex={setColorHex} 
           />}
           />
           <Route path="/register" element={<Register 
@@ -82,6 +84,7 @@ function App() {
             setAuth={setAuth}
             notificationModel={notificationModel}
             setNotificationModel={setNotificationModel}
+            colorHex={colorHex}
             />} 
           />
         </Routes>

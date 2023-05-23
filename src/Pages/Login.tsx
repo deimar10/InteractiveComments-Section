@@ -9,10 +9,11 @@ import CryptoJS from 'crypto-js';
 
 interface Props {
     setAuth: (auth: any) => void,
-    auth: object
+    auth: object,
+    setColorHex: any
 }
 
-function Login({setAuth, auth}: Props) {
+function Login({setAuth, auth, setColorHex}: Props) {
 
     const navigate = useNavigate();
 
@@ -65,6 +66,7 @@ function Login({setAuth, auth}: Props) {
                 username: login.username,
                 password: login.password
             }).then(response => {
+                setColorHex(response.data.hex[0].hex)
                 if (response.data.auth) {
                     setAuth({...auth, login: response.data.auth});
                     navigate(`/home/${username.replace(/\//g, '')}`);

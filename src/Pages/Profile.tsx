@@ -20,14 +20,17 @@ interface Props {
     setAuth: (auth: any) => void,
     notificationModel: boolean,
     setNotificationModel: (notificationModel: any) => void,
+    colorHex: any
 }
 
-function Profile({ auth, setAuth, notificationModel, setNotificationModel,  notifications, setNotifications }: Props) {
+function Profile({ auth, setAuth, notificationModel, setNotificationModel,  notifications, setNotifications, colorHex }: Props) {
 
     let { username } = useParams<{ username?: any }>();
     let navigate = useNavigate();
 
     const decryptedUsername = CryptoJS.AES.decrypt(username, 'secret-key').toString(CryptoJS.enc.Utf8);
+
+    const firstChar = decryptedUsername.charAt(0);
 
     const localUser = localStorage.getItem('username');
 
@@ -71,9 +74,14 @@ function Profile({ auth, setAuth, notificationModel, setNotificationModel,  noti
                     image={Background}
                     />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                    {decryptedUsername}
-                    </Typography>
+                    <div className='user-name-container'>
+                        <h3 style={{ backgroundColor: colorHex }}>
+                            {firstChar}
+                        </h3>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {decryptedUsername}
+                        </Typography>
+                    </div>
                     <Typography variant="body2" color="text.secondary">
                     Lizards are a widespread group of squamate reptiles, with over 6,000
                     species, ranging across all continents except Antarctica

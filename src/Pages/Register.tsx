@@ -22,6 +22,11 @@ function Register({register, setRegister}: Props) {
         confirmPasswordError: ''
     });
 
+    const randomHex = () => {
+        let color = (Math.random() * 0xfffff * 1000000).toString(16);
+        return '#' + color.slice(0, 6);
+    };
+
     const handleRegisterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRegister({...register, [e.target.name]: e.target.value});
     };
@@ -58,8 +63,9 @@ function Register({register, setRegister}: Props) {
         if(isValid) {
             axios.post('http://localhost:3002/register', {
                 username: register.username,
-                password: register.password
-            }).then(() => {
+                password: register.password,
+                hex: randomHex()
+            }).then((response) => {
                 navigate('/login');
                 setRegisterError({...registerError, usernameError: '', passwordError: '', confirmPasswordError: ''});
             }).catch(error => {
