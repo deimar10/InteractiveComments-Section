@@ -39,9 +39,9 @@
 <img width="1440" alt="Screenshot 2023-05-24 at 13 15 57" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/8d988f17-879d-44f9-a2b0-936c3234a40e">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 39" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/5bc6d0f7-5f5c-4453-82c7-b61f474b7508">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 48" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/8533b1d6-36e7-406a-86b2-81b9cbce968e">
-<img width="1440" alt="Screenshot 2023-05-24 at 13 14 22" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/fd2dcf10-4d0a-4a06-a3c7-0c0c5411f185">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 14 12" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/6d021fa1-277d-4b03-9a0d-564da83c451b">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 57" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/7b23b5fc-889e-4c95-9a3f-02730f9f53ce">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 15 12" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/0904777a-a02d-4551-b3b6-6f75e5e73ba4">
+<img width="1440" alt="Screenshot 2023-05-24 at 13 24 46" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/883803a7-5c79-4f64-8b19-c3704fdfcf03">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 21 26" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/686c7cf3-9975-426b-b564-e9150da4a561">
 
