@@ -35,7 +35,7 @@
   * See the name who you are replying to
   * Get alert when creating a comment or reply was successful 
 ## Screenshots
-<img width="1440" alt="Screenshot 2023-05-24 at 13 15 49" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/e841f28a-cc72-4fad-b9af-9670a27f65fc">
+<img width="1440" alt="Screenshot 2023-05-24 at 13 20 59" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/a6ba7911-3563-4619-9e34-bd0dd6780979">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 15 57" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/8d988f17-879d-44f9-a2b0-936c3234a40e">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 39" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/5bc6d0f7-5f5c-4453-82c7-b61f474b7508">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 48" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/8533b1d6-36e7-406a-86b2-81b9cbce968e">
@@ -43,5 +43,5 @@
 <img width="1440" alt="Screenshot 2023-05-24 at 13 14 12" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/6d021fa1-277d-4b03-9a0d-564da83c451b">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 13 57" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/7b23b5fc-889e-4c95-9a3f-02730f9f53ce">
 <img width="1440" alt="Screenshot 2023-05-24 at 13 15 12" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/0904777a-a02d-4551-b3b6-6f75e5e73ba4">
-<img width="1440" alt="Screenshot 2023-05-24 at 13 15 39" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/74110971-6885-4bd1-82b1-010dfd9ca3f9">
-<img width="1440" alt="Screenshot 2023-05-24 at 13 13 29" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/2001aa2a-b2f6-4d84-94f4-10a88c0d160d">
+<img width="1440" alt="Screenshot 2023-05-24 at 13 21 26" src="https://github.com/deimar10/InteractiveComments-Section/assets/89903372/686c7cf3-9975-426b-b564-e9150da4a561">
+
